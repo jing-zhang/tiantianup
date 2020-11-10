@@ -6,8 +6,8 @@ function Feed({feed, timestamp, username}) {
             <div className='Message__info'>
                 <h4>{username}
                 <span className='Message_timestamp'>
-                {/* { new Date(timestamp?.todate()).toUTCString()} */}
-                {timestamp}
+                {/* { new Date(timestamp.seconds.todate()).toUTCString()} */}
+                {JSON.stringify(timestamp)}
                 </span>
                 </h4>
                 <p>{feed}</p>

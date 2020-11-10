@@ -1,50 +1,32 @@
 import React, {useState, useEffect} from 'react'
 import Feed from './Feed'
+import db from './firebase';
+import firebase from 'firebase';
+import SendPost from './SendPost';
 
 function ChatRoom() {
 
     const [messsages, setMesssages] = useState([])
-    const [inputText, setInputText] = useState()
 
+    useEffect(() => {
 
-    const sendMessage = e => {
-        e.preventDefault();
-
-        setMesssages([...messsages, {feed: inputText, timestamp:Date.now(), username:"jing"}])
-
-        // db.collection('channels')
-        // .doc(channelId)
-        // .collection('message')
-        // .add({
-        //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        //     message: input,
-        //     user: user
-        // })
-
-        setInputText('');
-    }
+        db.collection('chatroom')
+        .orderBy('timestamp', 'desc')
+        .onSnapshot((snapshot) => 
+            setMesssages(snapshot.docs.map(doc => doc.data()))
+            );
+            },[]);
 
     return (
         <div>
            <div className="ChatRoom__input">
-                <form>
-                <input
-                    className='ChatRoom__input_feed'
-                    placeholder='Type message here'
-                    value={inputText} 
-                    onChange = {(e)=> setInputText(e.target.value)}
-                    ></input>
-                    <button 
-                    type='submit' 
-                    className='ChatRoom__input_feed_Button'
-                    onClick = {sendMessage}
-                    >Send Message</button>
-                </form>
+                <SendPost username="jing" />
             </div>
             <div className="ChatRoom__messages">
                 {
+                    // JSON.stringify(messsages)
                     messsages.map((msg, index)=>(
-                        <Feed feed={msg.feed} timestamp={msg.timestamp} username={msg.username} />
+                        <Feed  feed={msg.feed} timestamp={msg.timestamp} username={msg.username} />
                     ))
                 }
             </div>
