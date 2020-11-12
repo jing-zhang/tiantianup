@@ -19,7 +19,8 @@ function SendPost({username}) {
         .add({
             timestamp: Date.now(),
             feed: inputText,
-            username: username
+            username: username,
+            whatever:"baba"
         });
 
         setInputText('');

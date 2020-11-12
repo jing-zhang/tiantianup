@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import Feed from './Feed'
-import db from './firebase';
-import firebase from 'firebase';
+import db, {auth} from './firebase';
+// import firebase from 'firebase';
 import SendPost from './SendPost';
 
 function ChatRoom() {
 
     const [messsages, setMesssages] = useState([])
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
 
@@ -17,10 +18,29 @@ function ChatRoom() {
             );
             },[]);
 
+
+        useEffect(()=>{
+            const unsubscribe = auth.onAuthStateChanged((authUser)=>{
+                if(authUser){
+                // user has logged in...
+                setUser(authUser);
+                } else {
+                // user has logged out...
+                setUser(null);
+                }
+            })
+        
+            return ()=>{
+                // perfor a clean up
+                unsubscribe();
+            }
+            },[user])
+
     return (
         <div>
+            {JSON.stringify(user)}
            <div className="ChatRoom__input">
-                <SendPost username="jing" />
+                <SendPost username={user?.email} />
             </div>
             <div className="ChatRoom__messages">
                 {

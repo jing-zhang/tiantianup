@@ -15,6 +15,11 @@ function Home() {
                 </Link>
             </div>
             <div className='choice'>
+                <Link to='/login'>
+                    login
+                </Link>
+            </div>
+            <div className='choice'>
                 <Link to='/'>
                     Chatroom
                 </Link>

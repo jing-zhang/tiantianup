@@ -36,13 +36,13 @@ function MathCard() {
                                        element2:Math.ceil(Math.random()*10),
                                        hide: Math.ceil(Math.random()*3)}]);
         
-        setCount(0);
+        //setCount(0);
       }
 
 
     return (
         <div className='mathCard'>
-            <div className='mathCard_count'> {count} </div>
+            <div className='mathCard_count'> {count}  {nums.length}</div>
             {
                 nums.map((num, index) =>(
                     <TinderCard
