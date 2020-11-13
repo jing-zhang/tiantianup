@@ -5,6 +5,7 @@ import MathCard from './MathCard';
 import Home from './Home';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from './Login';
+import Uploader from './FileUpload'
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/uploader">
+              <Uploader />
             </Route>
             <Route path="/">
               <ChatRoom />

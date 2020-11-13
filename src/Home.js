@@ -20,6 +20,11 @@ function Home() {
                 </Link>
             </div>
             <div className='choice'>
+                <Link to='/uploader'>
+                    File Uploader
+                </Link>
+            </div>
+            <div className='choice'>
                 <Link to='/'>
                     Chatroom
                 </Link>
