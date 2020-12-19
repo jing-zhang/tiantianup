@@ -9,3 +9,5 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=p@ssw0rd" \
 
 crate a local folder /MongoData
 docker run --name some-mongo -p 27017:27017 -v /MongoData:/data/db -d mongo
+
+docker run --name recorder-redis -p 6379:6379 -d redis:alpine
